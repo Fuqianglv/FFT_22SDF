@@ -1,0 +1,65 @@
+//      wn_re = cos(-2pi*n/64)        wn_im = sin(-2pi*n/64)
+assign  wn_re[ 0] = 8'h7F;   assign  wn_im[ 0] = 8'h00;   //  0 1.000 -0.000
+assign  wn_re[ 1] = 8'h7F;   assign  wn_im[ 1] = 8'hF3;   //  1 0.995 -0.098
+assign  wn_re[ 2] = 8'h7E;   assign  wn_im[ 2] = 8'hE7;   //  2 0.981 -0.195
+assign  wn_re[ 3] = 8'h7A;   assign  wn_im[ 3] = 8'hDB;   //  3 0.957 -0.290
+assign  wn_re[ 4] = 8'h76;   assign  wn_im[ 4] = 8'hCF;   //  4 0.924 -0.383
+assign  wn_re[ 5] = 8'h71;   assign  wn_im[ 5] = 8'hC4;   //  5 0.882 -0.471
+assign  wn_re[ 6] = 8'h6A;   assign  wn_im[ 6] = 8'hB9;   //  6 0.831 -0.556
+assign  wn_re[ 7] = 8'h63;   assign  wn_im[ 7] = 8'hAF;   //  7 0.773 -0.634
+assign  wn_re[ 8] = 8'h5B;   assign  wn_im[ 8] = 8'hA5;   //  8 0.707 -0.707
+assign  wn_re[ 9] = 8'h51;   assign  wn_im[ 9] = 8'h9D;   //  9 0.634 -0.773
+assign  wn_re[10] = 8'h47;   assign  wn_im[10] = 8'h96;   // 10 0.556 -0.831
+assign  wn_re[11] = 8'h3C;   assign  wn_im[11] = 8'h8F;   // 11 0.471 -0.882
+assign  wn_re[12] = 8'h31;   assign  wn_im[12] = 8'h8A;   // 12 0.383 -0.924
+assign  wn_re[13] = 8'h25;   assign  wn_im[13] = 8'h86;   // 13 0.290 -0.957
+assign  wn_re[14] = 8'h19;   assign  wn_im[14] = 8'h82;   // 14 0.195 -0.981
+assign  wn_re[15] = 8'h0D;   assign  wn_im[15] = 8'h81;   // 15 0.098 -0.995
+assign  wn_re[16] = 8'h00;   assign  wn_im[16] = 8'h80;   // 16 0.000 -1.000
+assign  wn_re[17] = 8'hF3;   assign  wn_im[17] = 8'h81;   // 17 -0.098 -0.995
+assign  wn_re[18] = 8'hE7;   assign  wn_im[18] = 8'h82;   // 18 -0.195 -0.981
+assign  wn_re[19] = 8'hDB;   assign  wn_im[19] = 8'h86;   // 19 -0.290 -0.957
+assign  wn_re[20] = 8'hCF;   assign  wn_im[20] = 8'h8A;   // 20 -0.383 -0.924
+assign  wn_re[21] = 8'hC4;   assign  wn_im[21] = 8'h8F;   // 21 -0.471 -0.882
+assign  wn_re[22] = 8'hB9;   assign  wn_im[22] = 8'h96;   // 22 -0.556 -0.831
+assign  wn_re[23] = 8'hAF;   assign  wn_im[23] = 8'h9D;   // 23 -0.634 -0.773
+assign  wn_re[24] = 8'hA5;   assign  wn_im[24] = 8'hA5;   // 24 -0.707 -0.707
+assign  wn_re[25] = 8'h9D;   assign  wn_im[25] = 8'hAF;   // 25 -0.773 -0.634
+assign  wn_re[26] = 8'h96;   assign  wn_im[26] = 8'hB9;   // 26 -0.831 -0.556
+assign  wn_re[27] = 8'h8F;   assign  wn_im[27] = 8'hC4;   // 27 -0.882 -0.471
+assign  wn_re[28] = 8'h8A;   assign  wn_im[28] = 8'hCF;   // 28 -0.924 -0.383
+assign  wn_re[29] = 8'h86;   assign  wn_im[29] = 8'hDB;   // 29 -0.957 -0.290
+assign  wn_re[30] = 8'h82;   assign  wn_im[30] = 8'hE7;   // 30 -0.981 -0.195
+assign  wn_re[31] = 8'h81;   assign  wn_im[31] = 8'hF3;   // 31 -0.995 -0.098
+assign  wn_re[32] = 8'h80;   assign  wn_im[32] = 8'h00;   // 32 -1.000 -0.000
+assign  wn_re[33] = 8'h81;   assign  wn_im[33] = 8'h0D;   // 33 -0.995 0.098
+assign  wn_re[34] = 8'h82;   assign  wn_im[34] = 8'h19;   // 34 -0.981 0.195
+assign  wn_re[35] = 8'h86;   assign  wn_im[35] = 8'h25;   // 35 -0.957 0.290
+assign  wn_re[36] = 8'h8A;   assign  wn_im[36] = 8'h31;   // 36 -0.924 0.383
+assign  wn_re[37] = 8'h8F;   assign  wn_im[37] = 8'h3C;   // 37 -0.882 0.471
+assign  wn_re[38] = 8'h96;   assign  wn_im[38] = 8'h47;   // 38 -0.831 0.556
+assign  wn_re[39] = 8'h9D;   assign  wn_im[39] = 8'h51;   // 39 -0.773 0.634
+assign  wn_re[40] = 8'hA5;   assign  wn_im[40] = 8'h5B;   // 40 -0.707 0.707
+assign  wn_re[41] = 8'hAF;   assign  wn_im[41] = 8'h63;   // 41 -0.634 0.773
+assign  wn_re[42] = 8'hB9;   assign  wn_im[42] = 8'h6A;   // 42 -0.556 0.831
+assign  wn_re[43] = 8'hC4;   assign  wn_im[43] = 8'h71;   // 43 -0.471 0.882
+assign  wn_re[44] = 8'hCF;   assign  wn_im[44] = 8'h76;   // 44 -0.383 0.924
+assign  wn_re[45] = 8'hDB;   assign  wn_im[45] = 8'h7A;   // 45 -0.290 0.957
+assign  wn_re[46] = 8'hE7;   assign  wn_im[46] = 8'h7E;   // 46 -0.195 0.981
+assign  wn_re[47] = 8'hF3;   assign  wn_im[47] = 8'h7F;   // 47 -0.098 0.995
+assign  wn_re[48] = 8'h00;   assign  wn_im[48] = 8'h7F;   // 48 -0.000 1.000
+assign  wn_re[49] = 8'h0D;   assign  wn_im[49] = 8'h7F;   // 49 0.098 0.995
+assign  wn_re[50] = 8'h19;   assign  wn_im[50] = 8'h7E;   // 50 0.195 0.981
+assign  wn_re[51] = 8'h25;   assign  wn_im[51] = 8'h7A;   // 51 0.290 0.957
+assign  wn_re[52] = 8'h31;   assign  wn_im[52] = 8'h76;   // 52 0.383 0.924
+assign  wn_re[53] = 8'h3C;   assign  wn_im[53] = 8'h71;   // 53 0.471 0.882
+assign  wn_re[54] = 8'h47;   assign  wn_im[54] = 8'h6A;   // 54 0.556 0.831
+assign  wn_re[55] = 8'h51;   assign  wn_im[55] = 8'h63;   // 55 0.634 0.773
+assign  wn_re[56] = 8'h5B;   assign  wn_im[56] = 8'h5B;   // 56 0.707 0.707
+assign  wn_re[57] = 8'h63;   assign  wn_im[57] = 8'h51;   // 57 0.773 0.634
+assign  wn_re[58] = 8'h6A;   assign  wn_im[58] = 8'h47;   // 58 0.831 0.556
+assign  wn_re[59] = 8'h71;   assign  wn_im[59] = 8'h3C;   // 59 0.882 0.471
+assign  wn_re[60] = 8'h76;   assign  wn_im[60] = 8'h31;   // 60 0.924 0.383
+assign  wn_re[61] = 8'h7A;   assign  wn_im[61] = 8'h25;   // 61 0.957 0.290
+assign  wn_re[62] = 8'h7E;   assign  wn_im[62] = 8'h19;   // 62 0.981 0.195
+assign  wn_re[63] = 8'h7F;   assign  wn_im[63] = 8'h0D;   // 63 0.995 0.098
