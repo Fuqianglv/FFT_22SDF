@@ -4,7 +4,7 @@
 
 
 module twiddlefactors#(parameter N = 64,
-                       parameter ADDR_WIDTH = $clog2(N))
+                       parameter ADDR_WIDTH =  ( $clog2(N) < 4 ) ? 4 : $clog2(N))
                       (input clk,
                        input [ADDR_WIDTH-1:0] addr,
                        output reg signed [{{tf_width-1}}:0] twiddle_re,
@@ -18,9 +18,10 @@ module twiddlefactors#(parameter N = 64,
     wire signed [WIDTH-1:0]  wn_re[0:(N>>3)-1]; 
     wire signed [WIDTH-1:0]  wn_im[0:(N>>3)-1]; 
 
-    reg [ADDR_WIDTH-4:0]  select_addr;
-    reg [2:0]  select_addr_m;
-    
+    reg [ADDR_WIDTH-4:0]  select_addr = 0;
+    reg [2:0]  select_addr_m = 0;
+
+    generate if (N > 8) begin
     always @(posedge clk) begin
         select_addr_m <= addr[ADDR_WIDTH-1:ADDR_WIDTH-3];
         if(addr[ADDR_WIDTH-3]) begin
@@ -30,6 +31,17 @@ module twiddlefactors#(parameter N = 64,
             select_addr <= addr[ADDR_WIDTH-4:0];
         end
     end
+    end
+    else if (N == 8) begin
+    always @(posedge clk) begin
+        select_addr_m <= addr[2:0];
+        select_addr <= 0;
+    end
+    end
+    else begin
+
+    end
+    endgenerate
 
     always @(posedge clk) begin
         if(select_addr == 0) begin
@@ -55,7 +67,7 @@ module twiddlefactors#(parameter N = 64,
     end
 
     generate if (N == 8) begin
-    {% for tf in tfs[N] %}assign wn_re[{{tf.k}}] = {{tf.re_sign}}{{tf_width}}'sd{{tf.re}};assign wn_im[{{tf.k}}] = {{tf.im_sign}}{{tf_width}}'sd{{tf.im}};
+    {% for tf in tfs[8] %}assign wn_re[{{tf.k}}] = {{tf.re_sign}}{{tf_width}}'sd{{tf.re}};assign wn_im[{{tf.k}}] = {{tf.im_sign}}{{tf_width}}'sd{{tf.im}};
     {% endfor %}end
     else if (N == 16) begin
     {% for tf in tfs[16] %}assign wn_re[{{tf.k}}] = {{tf.re_sign}}{{tf_width}}'sd{{tf.re}};assign wn_im[{{tf.k}}] = {{tf.im_sign}}{{tf_width}}'sd{{tf.im}};

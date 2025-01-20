@@ -2,7 +2,7 @@ import math
 
 pi = math.pi
 
-N = 64  # Number of FFT Points
+N = 8  # Number of FFT Points
 NB = 8   # Number of Twiddle Data Bits
 
 NX = int((NB + 3) / 4)  

@@ -12,7 +12,8 @@ module twiddlefactors_tb;
     wire signed [7:0] twiddle_im;
 
     // Instantiate the Unit Under Test (UUT)
-    twiddlefactors uut (
+    twiddlefactors 
+    #(.N(8)) uut(
         .clk(clk), 
         .addr(addr), 
         .twiddle_re(twiddle_re), 
@@ -26,7 +27,7 @@ module twiddlefactors_tb;
         addr = 0;
 
         // Wait 100 ns for global reset to finish
-        #105.01;
+        #105;
 
         for(i = 0; i < 64; i = i + 1) begin
             addr = i;
