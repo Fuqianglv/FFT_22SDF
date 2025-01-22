@@ -135,6 +135,11 @@ module sdf4 #(parameter N = 64,
             stage1_out_re <= delay1_out_re_last;
             stage1_out_im <= delay1_out_im_last;
         end
+        else
+        begin
+            stage1_out_re <= delay1_out_re;
+            stage1_out_im <= delay1_out_im;
+        end
     end
 
     
