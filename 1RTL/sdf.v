@@ -265,40 +265,46 @@ module sdf4 #(parameter N = 64,
     wire [1:0] S2_bank;
     wire [WIDTH-1:0] twiddle_re;
     wire [WIDTH-1:0] twiddle_im;
-    reg [LOGS-1:0] tw_addr = 0; // twiddle address
-
-    reg tw_addr_syn_en = 0;
+    reg [LOGS-1:0] tw_addr         = 0; // twiddle address
+    reg tw_addr_syn_en             = 0;
     reg [LOGN-1:0] tw_addr_syn_cnt = 0;
     
     always @(posedge clk) begin
         if (S2_half_d1&&~tw_addr_syn_en) begin
             tw_addr_syn_cnt <= 3;
-            tw_addr_syn_en <= 1;
+            tw_addr_syn_en  <= 1;
         end
-        else if(tw_addr_syn_cnt == N-1) begin
+        else if (tw_addr_syn_cnt == N-1) begin
             tw_addr_syn_en <= 0;
         end
-        else if(tw_addr_syn_en)
-        begin
+            else if (tw_addr_syn_en)
+            begin
             tw_addr_syn_cnt <= tw_addr_syn_cnt + 1;
-        end
+            end
         else
         begin
             tw_addr_syn_cnt <= 0;
         end
     end
-    
     assign S2_bank = {tw_addr_syn_cnt[LOGS-2], tw_addr_syn_cnt[LOGS-1]};
     always @(posedge clk) begin
         tw_addr <= S2_bank*tw_addr_syn_cnt[LOGS-3:0];
     end
-    
-    
     twiddlefactors #(.N(S)) u_twiddlefactors(
     .clk        (clk),
     .addr       (tw_addr),
     .twiddle_re (twiddle_re),
     .twiddle_im (twiddle_im)
+    );
+    
+    MulComplex #(.WIDTH(WIDTH)) u_MulComplex(
+    .clk     (clk),
+    .in_a_re (stage2_out_re),
+    .in_a_im (stage2_out_im),
+    .in_b_re (twiddle_re),
+    .in_b_im (twiddle_im),
+    .out_re  (out_re),
+    .out_im  (out_im)
     );
     end
     else
@@ -306,5 +312,8 @@ module sdf4 #(parameter N = 64,
     
     end
     endgenerate
+    
+    
+    
     
 endmodule
