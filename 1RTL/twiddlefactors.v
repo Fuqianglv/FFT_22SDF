@@ -7,8 +7,8 @@ module twiddlefactors#(parameter N = 64,
                        parameter ADDR_WIDTH =  ( $clog2(N) < 4 ) ? 4 : $clog2(N))
                       (input clk,
                        input [ADDR_WIDTH-1:0] addr,
-                       output reg signed [7:0] twiddle_re,
-                       output reg signed [7:0] twiddle_im);
+                       output reg signed [7:0] twiddle_re = 1,
+                       output reg signed [7:0] twiddle_im = 0);
 
     localparam WIDTH = 8;
 
