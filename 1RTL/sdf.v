@@ -96,7 +96,7 @@ module sdf4 #(parameter N = 64,
         else
         begin
             delay1_out_re_last <= delay1_out_re_last;
-            delay1_out_im_last <= delay1_out_re_last;
+            delay1_out_im_last <= delay1_out_im_last;
         end
     end
     //output data
@@ -130,7 +130,7 @@ module sdf4 #(parameter N = 64,
             stage1_out_re <= butterfly1_out_a_re;
             stage1_out_im <= butterfly1_out_a_im;
         end
-        else if(stage1_out_cnt == S>>1 - 1)
+        else if(stage1_out_cnt[LOGS-1:0] == S - 2)
         begin 
             stage1_out_re <= delay1_out_re_last;
             stage1_out_im <= delay1_out_im_last;
