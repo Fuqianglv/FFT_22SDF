@@ -15,10 +15,10 @@ module MulComplex#(parameter WIDTH = 8)
                    output reg signed [WIDTH-1:0] out_re,
                    output reg signed [WIDTH-1:0] out_im);
     
-    reg signed [WIDTH-1:0] out_re1;
-    reg signed [WIDTH-1:0] out_im1;
-    reg signed [WIDTH-1:0] out_re2;
-    reg signed [WIDTH-1:0] out_im2;
+    reg signed [2 * WIDTH-1:0] out_re1;
+    reg signed [2 * WIDTH-1:0] out_im1;
+    reg signed [2 * WIDTH-1:0] out_re2;
+    reg signed [2 * WIDTH-1:0] out_im2;
     
     always @(posedge clk) begin
         //calculate the multiplication operation

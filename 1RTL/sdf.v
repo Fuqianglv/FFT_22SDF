@@ -306,6 +306,15 @@ module sdf4 #(parameter N = 64,
     .out_re  (out_re),
     .out_im  (out_im)
     );
+
+    reg stage2_out_en_d1 = 0;
+    reg stage2_out_en_d2 = 0;
+    always @(posedge clk) begin
+        stage2_out_en_d1 <= stage2_out_en;
+        stage2_out_en_d2 <= stage2_out_en_d1;
+    end
+    assign enable_out = stage2_out_en_d2;
+
     end
     else
     begin

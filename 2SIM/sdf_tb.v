@@ -40,7 +40,7 @@ module sdf_tb();
     
     // Instantiate the Unit Under Test (UUT)
     FFT
-    #(.N(32),.WIDTH(8)) uut(
+    #(.N(16),.WIDTH(8)) uut(
     .clk(clk),
     .enable_in(enable_in),
     .in_re(in_re),
