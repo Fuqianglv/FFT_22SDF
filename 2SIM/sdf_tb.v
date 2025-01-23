@@ -25,12 +25,12 @@ module sdf_tb();
         // Wait 100 ns for global reset to finish
         #106;
         enable_in = 1;
-        for(i = 0; i < 16; i = i + 1) begin
+        for(i = 0; i < 8; i = i + 1) begin
             in_re = i*2;
             in_im = -i;
             #10;
         end
-        for(i = 16; i < 32; i = i + 1) begin
+        for(i = 8; i < 16; i = i + 1) begin
             in_re = -i;
             in_im = i;
             #10;
@@ -40,7 +40,7 @@ module sdf_tb();
     
     // Instantiate the Unit Under Test (UUT)
     FFT
-    #(.N(32), .S(8), .WIDTH(8)) uut(
+    #(.N(16),.WIDTH(8)) uut(
     .clk(clk),
     .enable_in(enable_in),
     .in_re(in_re),
