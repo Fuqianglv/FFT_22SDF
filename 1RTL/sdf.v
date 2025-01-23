@@ -309,11 +309,10 @@ module sdf4 #(parameter N = 64,
     end
     else
     begin
-    
+    assign out_re = stage2_out_re;
+    assign out_im = stage2_out_im;
+    assign enable_out = stage2_out_en;
     end
     endgenerate
-    
-    
-    
-    
+   
 endmodule
