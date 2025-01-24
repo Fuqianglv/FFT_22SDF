@@ -116,14 +116,11 @@ def sdf(N,S,I,Q):
     print(f"Q: {Q}")
     print(f"twiddle:********************************")
     twiddle(N, S, I, Q, I_out, Q_out)
+    return I_out, Q_out
     
     
         
-N = 64
-S = 64
-I = [i for i in range(64)]
-Q = [i for i in range(64)]   
-sdf(N,S,I,Q)
+
     
 
 # 文件路径
@@ -177,6 +174,17 @@ if not I_signals or not Q_signals:
 # 打印部分读取的数据
 print(f"读取到的I信号数量: {len(I_signals)}")
 print(f"读取到的Q信号数量: {len(Q_signals)}")
+print(f"部分I信号: {I_signals[:10]}")
+print(f"部分Q信号: {Q_signals[:10]}")
 
+
+I_out, Q_out = sdf(1024, 1024, I_signals, Q_signals)
+I_out, Q_out = sdf(1024, 256, I_out, Q_out)
+'''I_out, Q_out = sdf(1024, 64, I_out, Q_out)
+I_out, Q_out = sdf(1024, 16, I_out, Q_out)
+I_out, Q_out = sdf(1024, 4, I_out, Q_out)
+#画出I_out和Q_out
+plt.plot(I_out)
+plt.plot(Q_out)'''
 
 
