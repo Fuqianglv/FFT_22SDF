@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # 采样率
-Fs = 100 * 1_000_000  # 采样率100MHz
+Fs = 25 * 1_000_000  # 采样率100MHz
 downsample_rate = 4  # 降采样倍数
 bit_length = 8   # 16位有符号数
 # 信号参数
@@ -15,8 +15,8 @@ f2 = -4*1_000_000  # 信号频率2
 # 生成I路和Q路测试信号
 s_i = np.cos(2 * np.pi * f1 * t)
 s_q = np.sin(2 * np.pi * f2 * t)
-data_before_fft_I = np.round(pow(2,7) * s_i)  # I路放大100倍
-data_before_fft_Q = np.round(pow(2,7) * s_q)  # Q路放大100倍
+data_before_fft_I = np.round((pow(2,7)) * s_i)  # I路放大100倍
+data_before_fft_Q = np.round((pow(2,7)) * s_q)  # Q路放大100倍
 
 
 

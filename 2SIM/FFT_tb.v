@@ -9,7 +9,7 @@ module FFT_tb();
     reg enable_in             = 0;
     reg [DATA_WIDTH-1:0] i_in = 0;
     reg [DATA_WIDTH-1:0] q_in = 0;
-    reg [15:0] temp_array [0:999];
+    reg [15:0] temp_array [0:8192-1];
     
     // Outputs
     wire out_fft_data_flag;
@@ -19,11 +19,12 @@ module FFT_tb();
     initial begin
         $readmemb("E:/LFQ/FFT_22SDF/6TOOL/data_before_fft.txt", temp_array);
         #100 enable_in = 1;
-        for(i = 0; i < 1000; i = i + 1) begin
+        for(i = 0; i < 64; i = i + 1) begin
             i_in = temp_array[i][2*DATA_WIDTH-1:DATA_WIDTH];
             q_in = temp_array[i][DATA_WIDTH-1:0];
             #10;
         end
+        enable_in = 0;
     end
     // ...existing code...
     
@@ -43,7 +44,7 @@ module FFT_tb();
     wire [DATA_WIDTH-1:0] out_im;
     
     
-    FFT#(.N(256),
+    FFT#(.N(64),
     .WIDTH(8)) u_FFT(
     .clk        (clk),
     .enable_in  (enable_in),

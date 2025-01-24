@@ -13,7 +13,7 @@ module twiddlefactors#(parameter N = 64,
     localparam WIDTH = 8;
 
     localparam signed [WIDTH-1:0] COS_SIN_PI_4 = (((32'h5A82799A<<1) >> (32-WIDTH)) + 1)>>>1; // cos(pi/4) / sin(pi/4)
-    localparam signed [WIDTH-1:0] SIN_PI_2 = (32'h80000000-1) >>> (32-WIDTH); // sin(pi/2)
+    localparam signed [WIDTH-1:0] SIN_PI_2 = (32'h80000000) >>> (32-WIDTH); // sin(pi/2)
 
     wire signed [WIDTH-1:0]  wn_re[0:(N>>3)-1]; 
     wire signed [WIDTH-1:0]  wn_im[0:(N>>3)-1]; 

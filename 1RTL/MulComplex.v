@@ -21,7 +21,7 @@ module MulComplex#(parameter WIDTH = 8,
     reg signed [2 * WIDTH-1:0] out_re2;
     reg signed [2 * WIDTH-1:0] out_im2;
     
-    generate if (ROUND == 1) begin
+    generate if (ROUND == 0) begin
     always @(posedge clk) begin
         //calculate the multiplication operation
         out_re1 <= (in_a_re * in_b_re+ (1 << (WIDTH-1)))>>>(WIDTH-1);
