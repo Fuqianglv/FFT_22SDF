@@ -68,7 +68,7 @@ module sdf4 #(parameter N = 64,
     .out_im (delay1_out_im)
     );
     
-    butterfly u1_butterfly(
+    butterfly#(.WIDTH(WIDTH)) u1_butterfly(
     .clk      (clk),
     .in_a_re  (delay1_out_re),
     .in_a_im  (delay1_out_im),
@@ -185,7 +185,7 @@ module sdf4 #(parameter N = 64,
     .out_im (delay2_out_im)
     );
     
-    butterfly u2_butterfly(
+    butterfly#(.WIDTH(WIDTH)) u2_butterfly(
     .clk      (clk),
     .in_a_re  (delay2_out_re),
     .in_a_im  (delay2_out_im),

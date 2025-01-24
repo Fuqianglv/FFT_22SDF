@@ -8,7 +8,7 @@
 //********************************************************************************
 
 module butterfly#(parameter WIDTH = 8,
-                  parameter ROUND = 0)
+                  parameter ROUND = 1)
                  (input clk,
                   input signed [WIDTH-1:0] in_a_re,
                   input signed [WIDTH-1:0] in_a_im,

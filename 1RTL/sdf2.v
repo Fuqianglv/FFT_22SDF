@@ -38,7 +38,7 @@ module sdf2 #(parameter WIDTH = 8)
     end
     
     
-    butterfly u_butterfly(
+    butterfly#(.WIDTH(WIDTH)) u_butterfly(
     .clk      (clk),
     .in_a_re  (delay_in_re),
     .in_a_im  (delay_in_re),
