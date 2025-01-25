@@ -4,7 +4,7 @@ import cmath
 import math
 from jinja2 import Environment, FileSystemLoader
 
-tf_width = 8
+tf_width = 16
 Ns = [2**i for i in range(3, 11)]  # N = 8, 16, 32, ..., 1024
 
 output_fn = 'twiddlefactors.v'

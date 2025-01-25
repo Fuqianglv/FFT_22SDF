@@ -3,13 +3,13 @@
 
 module FFT_tb();
     
-    parameter DATA_WIDTH = 8;
+    parameter DATA_WIDTH = 16;
     // Inputs
     reg clk                   = 0;
     reg enable_in             = 0;
     reg [DATA_WIDTH-1:0] i_in = 0;
     reg [DATA_WIDTH-1:0] q_in = 0;
-    reg [15:0] temp_array [0:8192-1];
+    reg [2*DATA_WIDTH:0] temp_array [0:8192-1];
     
     // Outputs
     wire out_fft_data_flag;
@@ -45,7 +45,7 @@ module FFT_tb();
     
     
     FFT#(.N(64),
-    .WIDTH(8)) u_FFT(
+    .WIDTH(DATA_WIDTH)) u_FFT(
     .clk        (clk),
     .enable_in  (enable_in),
     .in_re      (i_in),
