@@ -10,15 +10,26 @@ def butterfly(I_a, I_b, Q_a, Q_b, out_I_a, out_I_b, out_Q_a, out_Q_b):
     out_Q_b.clear()
     
     for i in range(len(I_a)):
-        out_I_a.append(int(I_a[i] + I_b[i]+1)>>1)
-        out_I_b.append(int(I_a[i] - I_b[i]+1)>>1)
-        out_Q_a.append(int(Q_a[i] + Q_b[i]+1)>>1)
-        out_Q_b.append(int(Q_a[i] - Q_b[i]+1)>>1)
-        
-    print(f"out_I_a: {out_I_a}")
-    print(f"out_I_b: {out_I_b}")
-    print(f"out_Q_a: {out_Q_a}")
-    print(f"out_Q_b: {out_Q_b}")
+        append_data = int(I_a[i] + I_b[i])
+        if append_data & 0x1 == 1:
+            append_data = append_data>0 and append_data+1 or append_data-1
+        append_data = append_data >> 1
+        out_I_a.append(append_data)
+        append_data = int(I_a[i] - I_b[i])
+        if append_data & 0x1 == 1:
+            append_data = append_data>0 and append_data+1 or append_data-1
+        append_data = append_data >> 1
+        out_I_b.append(append_data)
+        append_data = int(Q_a[i] + Q_b[i])
+        if append_data & 0x1 == 1:
+            append_data = append_data>0 and append_data+1 or append_data-1
+        append_data = append_data >> 1
+        out_Q_a.append(append_data)
+        append_data = int(Q_a[i] - Q_b[i])
+        if append_data & 0x1 == 1:
+            append_data = append_data>0 and append_data+1 or append_data-1
+        append_data = append_data >> 1
+        out_Q_b.append(append_data)
     
     
 def bit_reverse(N, S, I, Q, I_a, I_b, Q_a, Q_b):
@@ -83,8 +94,8 @@ def twiddle(N, S, I, Q, I_out, Q_out):
     Q_out[:] = np.array(data_out).imag.astype(np.int64).tolist()
 
     
-    print(f"I_out_tw: {I_out}")
-    print(f"Q_out_tw: {Q_out}")
+    #print(f"I_out_tw: {I_out}")
+    #print(f"Q_out_tw: {Q_out}")
 
 def out_IQ(N,S,I, Q):
     I_out = []
@@ -94,8 +105,8 @@ def out_IQ(N,S,I, Q):
         I_out.extend(I[i+N//2:i + S+N//2])
         Q_out.extend(Q[i:i + S])
         Q_out.extend(Q[i+N//2:i + S+N//2])
-    print(f"I_out: {I_out}")
-    print(f"Q_out: {Q_out}")
+    #print(f"I_out: {I_out}")
+    #print(f"Q_out: {Q_out}")
     I[:]=I_out
     Q[:]=Q_out
 
@@ -221,16 +232,18 @@ bit_length = 8   # 16位有符号数
 N = 1024 * downsample_rate  # 采样点数
 n = np.arange(1, N+1)
 t = n / Fs
-f = -4*1_000_000  # 信号频率1
+f = 49*1_000_000  # 信号频率1
 
 
 # 生成I路和Q路测试信号
 s_i = np.cos(2 * np.pi * f * t)
 s_q = np.sin(2 * np.pi * f * t)
+
 I_signals = np.round((pow(2,bit_length-1)-1) * s_i)  # I路放大100倍
 Q_signals = np.round((pow(2,bit_length-1)-1) * s_q)  # Q路放大100倍
+
 I_signals[:] = np.array(I_signals).astype(np.int32).tolist()
-Q_signals[:] = np.array(Q_signals).astype(np.int32).tolist()
+Q_signals[:] = np.array(Q_signals).astype(np.int32).tolist() 
 N=1024
 I_out, Q_out = sdf(N, 1024, I_signals, Q_signals)
 I_out, Q_out = sdf(N, 256, I_out, Q_out)
@@ -243,9 +256,11 @@ Q = [0] * N
 new = 0
 
 for i in range(len(I_out)):
-    new =(i&(0x3<<0))<<(8) | (i&(0x3<<2))<<(4)  |(i&(0x3<<4)) | (i&(0x3<<6))>>(4) | (i&(0x3<<8))>>(8) 
-    #print(f"new: {new}")
-    #print(f"i: {i}")
+    new = format(i, '010b')
+    # 反转二进制字符串
+    new = new[::-1]
+    # 将反转后的二进制字符串转换回整数
+    new = int(new, 2)
     I[new] = I_out[i]
     Q[new] = Q_out[i]
     
