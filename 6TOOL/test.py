@@ -30,6 +30,11 @@ def butterfly(I_a, I_b, Q_a, Q_b, out_I_a, out_I_b, out_Q_a, out_Q_b):
             append_data = append_data>0 and append_data+1 or append_data-1
         append_data = append_data >> 1
         out_Q_b.append(append_data)
+        
+        '''out_I_a.append(int(I_a[i] + I_b[i]) >> 1)
+        out_I_b.append(int(I_a[i] - I_b[i]) >> 1)
+        out_Q_a.append(int(Q_a[i] + Q_b[i]) >> 1)
+        out_Q_b.append(int(Q_a[i] - Q_b[i]) >> 1)'''
     
     
 def bit_reverse(N, S, I, Q, I_a, I_b, Q_a, Q_b):

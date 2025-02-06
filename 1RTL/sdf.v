@@ -30,13 +30,13 @@ module sdf4 #(parameter N = 64,
     wire [WIDTH-1:0] butterfly1_out_b_re;
     wire [WIDTH-1:0] butterfly1_out_b_im;
     
-    reg [WIDTH-1:0] delay1_out_re_last;
-    reg [WIDTH-1:0] delay1_out_im_last;
+    reg signed [WIDTH-1:0] delay1_out_re_last;
+    reg signed [WIDTH-1:0] delay1_out_im_last;
     
     reg [LOGN-1:0] stage1_out_cnt = 0;
     reg stage1_out_en             = 0;
-    reg [WIDTH-1:0] stage1_out_re = 0;
-    reg [WIDTH-1:0] stage1_out_im = 0;
+    reg signed [WIDTH-1:0] stage1_out_re = 0;
+    reg signed [WIDTH-1:0] stage1_out_im = 0;
     
     //data input counter
     always @(posedge clk) begin
@@ -109,14 +109,17 @@ module sdf4 #(parameter N = 64,
         end
     end
     
+    reg [LOGS-1:0] stage1_out_cnt_ad = 0;
     always @(posedge clk) begin
         if (stage1_out_en)
         begin
             stage1_out_cnt <= stage1_out_cnt + 1;
+            stage1_out_cnt_ad <= stage1_out_cnt+2;
         end
         else
         begin
             stage1_out_cnt <= 0;
+            stage1_out_cnt_ad <= 0;
         end
     end
     
@@ -129,8 +132,13 @@ module sdf4 #(parameter N = 64,
         end
         else if (stage1_out_cnt[LOGS-1:0] == S - 2)
         begin
-            stage1_out_re <= delay1_out_re_last;
-            stage1_out_im <= delay1_out_im_last;
+            stage1_out_re <= delay1_out_im_last;
+            stage1_out_im <= -delay1_out_re_last;
+        end
+        else if(stage1_out_cnt_ad[LOGS-1:LOGS-2] == 2'b11)
+        begin
+            stage1_out_re <= delay1_out_im;
+            stage1_out_im <= -delay1_out_re;
         end
         else
         begin

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 # 采样率
 Fs = 100 * 1_000_000  # 采样率100MHz
 downsample_rate = 1  # 降采样倍数
-bit_length = 16   # 16位有符号数
+bit_length = 8   # 16位有符号数
 # 信号参数
 N = 1024 * downsample_rate *2 # 采样点数
 n = np.arange(1, N+1)
